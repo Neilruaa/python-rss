@@ -9,5 +9,11 @@ def parse_feed(url):
     except Exception as e:
         print(f"Erreur parsing {url}: {e}")
 
-test_url = 'https://flux.saynete.com/encart_rss_informatique_cybersecurite_fr.xml'
-parse_feed(test_url)
+def load_urls(path='rss_list.txt'):
+    with open(path, 'r', encoding='utf-8') as f:
+        return [line.strip() for line in f if line.strip()]
+
+urls = load_urls()
+for url in urls[:10]:
+    print(f"Parsing {url}")
+    parse_feed(url)
